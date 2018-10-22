@@ -1,5 +1,4 @@
 
-
 public class Ordenamientos {
 	int dragonesMatados = 0;
 	String lista;
@@ -55,18 +54,20 @@ public class Ordenamientos {
 		int n = listaEdades.getTamaño();
 
 		// One by one move boundary of unsorted subarray
-		/**
-		 * 
+		/**Se toma cada valor y se mueve dentro de las listas desordenadas
 		 */
 		for (int i = 0; i < n - 1; i++) {
-			// Find the minimum element in unsorted array
+			/**Encuentra el mínimo elemento desordenado y se compara con otro hasta encontrar otro elemento desordenado
+			 */
 			int min_idx = i;
 			for (int j = i + 1; j < n; j++)
 				if (listaEdades.retornar(j) < listaEdades.retornar(min_idx))
 					min_idx = j;
 
-			// Swap the found minimum element with the first
-			// element
+			/**
+			 * Cambia el mínimo elemento encontrado con el primero dentr de mbas listas, y así se asegura de que los dragones 
+			 * quedan acomodados con respecto a la listas de edades
+			 */
 			int temp = listaEdades.retornar(min_idx);
 			listaEdades.modificar(min_idx, listaEdades.retornar(i));
 			listaEdades.modificar(i, temp);
@@ -79,68 +80,84 @@ public class Ordenamientos {
 
 	void quickSort(Lista<Dragon> listaDragones, Lista<Integer> listaEdades, int menor, int mayor) {
 		if (menor < mayor) {
-			/*
-			 * pi is partitioning index, arr[pi] is now at right place
+			/**
+			 * pi es la partición de la lista en ds mitades, es la clase que hace todo el trabajo
 			 */
+			
 			int pi = partitionQS(listaDragones,listaEdades, menor, mayor);
 
-			// Recursively sort elements before
-			// partition and after partition
+			/**
+			 * Se hace la recursividad del algoritmo pero con listas divididas a la mitad
+			 */
 			quickSort(listaDragones,listaEdades, menor, pi - 1);
 			quickSort(listaDragones,listaEdades, pi + 1, mayor);
 		}
 	}
 
 	int partitionQS(Lista<Dragon> listaDragones,Lista<Integer> listaEdades, int menor, int mayor) {
-		int pivot = listaEdades.retornar(mayor);
-		int i = (menor - 1); // index of smaller element
+		/**
+		 * Se declara un pivote, que va a ser el valor del último elemnto de la lista envida elemento 
+		 */
+		int pivote = listaEdades.retornar(mayor);
+		int i = (menor - 1); // posición del elemento menor
 		for (int j = menor; j < mayor; j++) {
-			// If current element is smaller than or
-			// equal to pivot
-			if (listaEdades.retornar(j) <= pivot) {
+			/**
+			 * Se da la condición, si el valor en la posición j es menor o igual al pivote
+			 * y se aumenta el contador i, que será el menor desordenado
+			 */
+			if (listaEdades.retornar(j) <= pivote) {
 				i++;
 
-				// swap arr[i] and arr[j]
+				/**Se cambia de posición el i(posición del menor) con j (Elemento evaluado) 
+				 * y se cre un nodo temporal que tomará el valor de i para luego colocarlo en la posición j 
+				 * Se hace lo mismo con lista de dragones, se modifican posiciones y nodos (En este caso de tipo Dragon)
+				 */
 				int temp = listaEdades.retornar(i);
 				Dragon temp2 = listaDragones.retornar(i);
 				listaEdades.modificar(i, listaEdades.retornar(j));
 				listaEdades.modificar(j, temp);
+				
 				listaDragones.modificar(i, listaDragones.retornar(j));
 				listaDragones.modificar(j, temp2);
-				// System.out.println(lista.verLista());
 			}
 		}
 
-		// swap arr[i+1] and arr[high] (or pivot)
+		/**
+		 * En caso que terminen de recorrer y no haya cumplido la condición, se intercambia el valor de 
+		 * la posición i+1 con el elemnto mayor, y se realiza lo mismo con la lista de dragones 
+		 * y se devuelve la posición i +1
+		 */
 		int temp = listaEdades.retornar(i + 1);
 		Dragon temp2 = listaDragones.retornar(i + 1);
 		listaEdades.modificar(i + 1, listaEdades.retornar(mayor));
 		listaEdades.modificar(mayor, temp);
 		listaDragones.modificar(i + 1, listaDragones.retornar(mayor));
 		listaDragones.modificar(mayor, temp2);
-		// System.out.println(lista.verLista());
-
 		return i + 1;
 	}
 
 	void insertionSort(Lista<Dragon> listaDragones, Lista<Integer> listaRecarga) {
 		int n = listaRecarga.getTamaño();
+		/** Se toma cada elemnto y se copia el valor en la variable temporales
+		 */
 		for (int i = 1; i < n; ++i) {
-			int key = listaRecarga.retornar(i);
-			Dragon key2 = listaDragones.retornar(i);
+			int temp = listaRecarga.retornar(i);
+			Dragon temp2 = listaDragones.retornar(i);
 			int j = i - 1;
-
-			/*
-			 * Move elements of arr[0..i-1], that are greater than key, to one position
-			 * ahead of their current position
+			/**
+			 * Mueve los elementos que son mayores que el temporal, y se repite hasta que no hayan elementos 
+			 * menores antes del temporal
 			 */
-			while (j >= 0 && listaRecarga.retornar(j) > key) {
+			while (j >= 0 && listaRecarga.retornar(j) > temp) {
 				listaRecarga.modificar(j + 1, listaRecarga.retornar(j));
 				listaDragones.modificar(j + 1, listaDragones.retornar(j));
 				j = j - 1;
 			}
-			listaRecarga.modificar(j + 1, key);
-			listaDragones.modificar(j + 1, key2);
+			/**
+			 * Se modifican las posiciones j de ambas listas con los emporales 
+			 */
+			listaRecarga.modificar(j + 1, temp);
+			listaDragones.modificar(j + 1, temp2);
 			
 		}
 	}
