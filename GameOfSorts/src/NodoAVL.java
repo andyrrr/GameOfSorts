@@ -10,8 +10,8 @@ public class NodoAVL<B extends Comparable<B>>{
 		Derecho=null;
 		Izquierdo = null;
 	}
-        public Integer getData(){
-            return (Integer) data;
+        public B getData(){
+            return (B) data;
         }
         
 }

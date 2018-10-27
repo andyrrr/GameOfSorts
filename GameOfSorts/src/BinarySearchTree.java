@@ -190,7 +190,9 @@ public class BinarySearchTree <B extends Comparable<B>>{
     }
 
     
-    
+    public static void main (String[] args) {
+    	
+    }
     
 
         

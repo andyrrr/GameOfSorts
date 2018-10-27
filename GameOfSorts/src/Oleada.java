@@ -5,19 +5,28 @@ import java.io.IOException;
 
 public class Oleada {
 	/**
-	 *Se declaran las variables a usar dentro del programa
+	 * Se declaran las variables a usar dentro del programa
 	 */
-	private static final String ARCHIVO = "C:\\Users\\maxta\\Desktop\\nombres.txt";
+	private static final String ARCHIVO = "C:\\Users\\Inspiron 3458\\Desktop\\nombres.txt";
 	static Lista<String> nombres = new Lista<String>();
 	Lista<Integer> edades = new Lista<Integer>();
 	Lista<Dragon> listaDragones = new Lista<Dragon>();
 	static Ordenamientos ob = new Ordenamientos();
+
 	/**
 	 * Se inicia cada oleada, este es el constructor, toma 500 edades y las añade
-	 * como una lista de posibles opciones (Dos dragones no pueden tener la misma edad) 
+	 * como una lista de posibles opciones (Dos dragones no pueden tener la misma
+	 * edad)
+	 * 
 	 * @param cantidad Cantidad de dragones de esta oleada
 	 */
 	public Oleada(int cantidad) {
+		try {
+			Oleada.muestraContenido(ARCHIVO);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/**
 		 * cada dragón hecho en masa, es añadadido a la lista de Dragones
 		 */
@@ -52,38 +61,34 @@ public class Oleada {
 		/** Cierra el lector */
 		b.close();
 	}
+
 	/**
-	 * Se crea una oleada de 5 dragones, el objeto ob, será el objeto capaz de ordenar 
-	 * las listas según se os indique, cada vez que se necesite ordenar la lista de dragones según edad 
-	 * o según velocidad de recarga, se llamará al mpetodo ordenar 
+	 * Se crea una oleada de 5 dragones, el objeto ob, será el objeto capaz de
+	 * ordenar las listas según se os indique, cada vez que se necesite ordenar la
+	 * lista de dragones según edad o según velocidad de recarga, se llamará al
+	 * mpetodo ordenar
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		try {
-			muestraContenido(ARCHIVO);
-			Oleada o1 = new Oleada(5);
-			/**
-			 * Se envia la lista de dragones a acomodar, y los dragones que han matado
-			 * luego con un for se uestra en consola el nuevo orden de la lista
-			 */
-			ob.Ordenar(o1.listaDragones,1);
-			for (int i=0;i<o1.listaDragones.getTamaño();i++) {
-				o1.listaDragones.retornar(i).verDragon();
-			}
-			ob.Ordenar(o1.listaDragones,2);
-			for (int i=0;i<o1.listaDragones.getTamaño();i++) {
-				o1.listaDragones.retornar(i).verDragon();
-			}
-			ob.Ordenar(o1.listaDragones,3);
-			for (int i=0;i<o1.listaDragones.getTamaño();i++) {
-				o1.listaDragones.retornar(i).verDragon();
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		Oleada o1 = new Oleada(5);
+		/**
+		 * Se envia la lista de dragones a acomodar, y los dragones que han matado luego
+		 * con un for se uestra en consola el nuevo orden de la lista
+		 */
+		ob.Ordenar(o1.listaDragones, 1);
+		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+			o1.listaDragones.retornar(i).verDragon();
+		}
+		ob.Ordenar(o1.listaDragones, 2);
+		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+			o1.listaDragones.retornar(i).verDragon();
+		}
+		ob.Ordenar(o1.listaDragones, 3);
+		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+			o1.listaDragones.retornar(i).verDragon();
+
 		}
 	}
 }

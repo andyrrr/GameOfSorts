@@ -170,7 +170,7 @@ public class ArbolAVL <B extends Comparable<B>>{
 				Aux = null;
 			}
 
-                        if (((Integer)data).compareTo(Aux.getData()) >0)
+                        if (((B)data).compareTo(Aux.getData()) >0)
                                 Aux = (NodoAVL<B>) Aux.Derecho;
                         else{
                                 Aux = (NodoAVL<B>) Aux.Izquierdo;
@@ -205,13 +205,13 @@ public class ArbolAVL <B extends Comparable<B>>{
             PostOrdenAVL (A);
         }
 	//Despliega la informacion en Postorden
-	private void PostOrdenAVL (NodoAVL Nodo){
+	private void PostOrdenAVL (NodoAVL<B> Nodo){
 		if (Nodo == null){
 			return ;
 		}
 		else{
-			PostOrdenAVL (Nodo.Izquierdo);
-			PostOrdenAVL (Nodo.Derecho);
+			PostOrdenAVL ((NodoAVL<B>) Nodo.Izquierdo);
+			PostOrdenAVL ((NodoAVL<B>) Nodo.Derecho);
 			impresor=impresor+"Autor: "+Nodo.getData();
 		}
 	}
@@ -233,14 +233,14 @@ public class ArbolAVL <B extends Comparable<B>>{
 	
 
 	
-    public Integer get(B data){
+    public B get(B data){
         NodoAVL<B> current = A;
         while(current!=null){
             if(current.getData()==data){
             	
                 return current.getData();
             }else 
-            	if(current.getData().compareTo((Integer)data) > 0){
+            	if(current.getData().compareTo((B)data) > 0){
                     current = (NodoAVL<B>) current.Izquierdo;
             }else{
                     current = (NodoAVL<B>) current.Derecho;
@@ -252,9 +252,14 @@ public class ArbolAVL <B extends Comparable<B>>{
     public static void main(String[] args) {
     
     	ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
-    	arbol.Insercion(2);
-    	arbol.Insercion(9);
-    	arbol.Insercion(3);
+    	Oleada o1 = new Oleada(5);
+    	Lista<Integer> listaEdades = new Lista<Integer>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			listaEdades.insertarFinal(o1.listaDragones.retornar(i).getEdad());
+		}
+    	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
+    		arbol.Insercion(listaEdades.retornar(i));
+    	}
     	arbol.InordenAVL();
     }
 	
