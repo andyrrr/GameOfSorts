@@ -1,4 +1,4 @@
-package GoS;
+package sorts;
 import java.io.*;
 
 public class Nodo<T> implements Serializable {

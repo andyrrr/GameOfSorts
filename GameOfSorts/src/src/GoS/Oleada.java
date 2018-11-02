@@ -1,20 +1,41 @@
 package GoS;
 
 import java.io.BufferedReader;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Oleada {
-	private static final String ARCHIVO = "C:\\Users\\Valeria\\Documents\\Segundo Semestre\\Algoritmos y Estructuras de Datos I\\Game of Sorts\\nombresDragones.txt";
+	/**
+	 * Se declaran las variables a usar dentro del programa
+	 */
+	private static final String ARCHIVO = "C:\\Users\\maxta\\Desktop\\nombres.txt";
 	static Lista<String> nombres = new Lista<String>();
-	Lista<String> o_nombres = new Lista<String>();
 	Lista<Integer> edades = new Lista<Integer>();
-	Lista<Integer> velocidad = new Lista<Integer>();
+	Lista<Dragon> listaDragones = new Lista<Dragon>();
+	static Ordenamientos ob = new Ordenamientos();
 
-	public Oleada() {
-
+	/**
+	 * Se inicia cada oleada, este es el constructor, toma 500 edades y las añade
+	 * como una lista de posibles opciones (Dos dragones no pueden tener la misma
+	 * edad)
+	 * 
+	 * @param cantidad Cantidad de dragones de esta oleada
+	 */
+	public Oleada(int cantidad) {
+		/**
+		 * cada dragón hecho en masa, es añadadido a la lista de Dragones
+		 */
+		int max = 500;
+		for (int i = 1; i < max; i++) {
+			edades.insertarFinal(i);
+		}
+		Dragon[] dragon = new Dragon[cantidad];
+		for (int i = 0; i < cantidad; i++) {
+			dragon[i] = new Dragon(nombres, nombres, edades);
+			dragon[i].verDragon();
+			listaDragones.insertarFinal(dragon[i]);
+		}
 	}
 
 	/** Este método es para leer el archivo txt */
@@ -35,31 +56,36 @@ public class Oleada {
 		}
 		/** Cierra el lector */
 		b.close();
-
 	}
 
-	/***/
-	public Lista<String> Crear(int cantidad) {
-
-		Dragon[] objetos = new Dragon[cantidad];
-		for (int i = 0; i < cantidad; i++) {
-			objetos[i] = new Dragon();
-			o_nombres.insertarFinal(objetos[i].nombre(nombres));
-			edades.insertarFinal(objetos[i].Edad());
-			velocidad.insertarFinal(objetos[i].RecargadeFuego());
-		}
-		System.out.println(o_nombres.verLista());
-		System.out.println(edades.verLista());
-		System.out.println(velocidad.verLista());
-		return null;
-
-	}
-
+	/**
+	 * Se crea una oleada de 5 dragones, el objeto ob, será el objeto capaz de
+	 * ordenar las listas según se os indique, cada vez que se necesite ordenar la
+	 * lista de dragones según edad o según velocidad de recarga, se llamará al
+	 * mpetodo ordenar
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		Oleada o1 = new Oleada();
 		try {
 			muestraContenido(ARCHIVO);
-			o1.Crear(25);
+			Oleada o1 = new Oleada(5);
+			/**
+			 * Se envia la lista de dragones a acomodar, y los dragones que han matado luego
+			 * con un for se uestra en consola el nuevo orden de la lista
+			 */
+			ob.Ordenar(o1.listaDragones, 1);
+			for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+				o1.listaDragones.retornar(i).verDragon();
+			}
+			ob.Ordenar(o1.listaDragones, 2);
+			for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+				o1.listaDragones.retornar(i).verDragon();
+			}
+			ob.Ordenar(o1.listaDragones, 3);
+			for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
+				o1.listaDragones.retornar(i).verDragon();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

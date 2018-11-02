@@ -1,8 +1,6 @@
 package GoS;
 import java.io.Serializable;
 
-import GoS.Nodo;
-
 public class Lista<T> implements Serializable {
 	/**
 	 * 
@@ -49,10 +47,10 @@ public class Lista<T> implements Serializable {
 	 * cada vez que se sobreescriba el nodo temporal se le sumará uno a el lugar, que indica la posición del elemento, cuando se llegue al indice (i), se retorna el valor
 	 * de el nodo temporal  
 	 */
-	public T retornar(int i){
+	public T retornar(int posicion){
 		int lugar=0;
 		Nodo<T> temp = this.inicio;
-		while (lugar<i) {
+		while (lugar<posicion) {
 			temp=temp.siguiente;
 			lugar++;
 		}
@@ -98,6 +96,22 @@ public class Lista<T> implements Serializable {
 			ListaFinal = ListaFinal+String.valueOf(temp.valor);
 			return ListaFinal;
 		}
+	}
+	/**
+	 * Se toma una posicion y un valor del tipo de nodo que se va a modificar, se recorrerá la lista
+	 * hasta llegar a la posición señalada y se le un nuevo valor al nodo en esa posición, el nuevo 
+	 * valor es definido por el usuario
+	 * @param posicion lugar del nodo a cambiar
+	 * @param valor Valor a asignar al nuevo nodo
+	 */
+	public void modificar(int posicion, T valor) {
+		int lugar=0;
+		Nodo<T> temp = this.inicio;
+		while (lugar<posicion) {
+			temp=temp.siguiente;
+			lugar++;
+		}
+		temp.setValor(valor);
 	}
 	public void removerPorPosicion(int posicion){
         // Verifica si la posición ingresada se encuentre en el rango
