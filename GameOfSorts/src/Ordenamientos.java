@@ -1,5 +1,7 @@
 import java.util.logging.*;
 
+import formacion.ArbolAVL;
+
 public class Ordenamientos {
 	int dragonesMatados = 0;
 	String lista;

@@ -1,5 +1,8 @@
 package formacion;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Ordenamientos {
 	int dragonesMatados = 0;
 	String lista;
@@ -170,6 +173,42 @@ public class Ordenamientos {
 			listaFinal.insertarFinal(Integer.valueOf(li[i]));
 		}
 		return listaFinal;
+	}
+	void ArbolBinario() throws FileNotFoundException, IOException {
+		BinarySearchTree<Integer> a1 = new BinarySearchTree<Integer>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<Integer> listaEdades = new Lista<Integer>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			listaEdades.insertarFinal(o1.listaDragones.retornar(i).getEdad());
+		}
+    	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
+    		a1.insert(listaEdades.retornar(i));
+    	}
+    	a1.display();
+	}
+	void ArbolAVL() throws FileNotFoundException, IOException {
+		ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<Integer> listaEdades = new Lista<Integer>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			listaEdades.insertarFinal(o1.listaDragones.retornar(i).getEdad());
+		}
+    	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
+    		arbol.Insercion(listaEdades.retornar(i));
+    	}
+    	arbol.InordenAVL();
+	}
+	void ArbolB() throws FileNotFoundException, IOException {
+		BTree <String> b1 = new BTree<String>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<String> nombres = new Lista<String>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			nombres.insertarFinal(o1.listaDragones.retornar(i).getNombre());
+		}
+    	for (int i = 0; i < nombres.getTamaño(); i++) { 
+    		b1.insert(nombres.retornar(i));
+    	}
+    	b1.inOrder();
 	}
 
 	/*public static void main(String args[]) {

@@ -1,3 +1,4 @@
+package formacion;
  public class Node<T> {
 
         public T information;

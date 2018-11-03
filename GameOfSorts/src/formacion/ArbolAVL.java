@@ -1,3 +1,5 @@
+package formacion;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
