@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -32,6 +33,7 @@ public class Juego extends JPanel implements Runnable, Variables {
 	private int direccion = -1;
 	private int direccionY = -1;
 	private int muertes = 0;
+	private int oportunidades = 3;
 	private ImageIcon fondo = new ImageIcon(
 			"C:\\Users\\Valeria\\Documents\\Segundo Semestre\\Algoritmos y Estructuras de Datos I\\Game of Sorts\\landscape.png");
 
@@ -39,6 +41,7 @@ public class Juego extends JPanel implements Runnable, Variables {
 	private boolean jugando = true;
 	private final String imagenExplosion = "C:\\Users\\Valeria\\Documents\\Segundo Semestre\\Algoritmos y Estructuras de Datos I\\Game of Sorts\\bomb - copia.png";
 	private String mensaje = "Game Over";
+	private Logger logger = Logger.getLogger("");
 
 	private Thread animator;
 
@@ -68,8 +71,8 @@ public class Juego extends JPanel implements Runnable, Variables {
 
 	public void gameInit() {
 		dragones = new ArrayList();
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 2; j++) {
 				Dragon dragon = new Dragon(X_INICIAL_DRAGON + 18 * j, Y_INICIAL_DRAGON + 18 * i, i + 1);
 				dragones.add(dragon);
 			}
@@ -181,10 +184,22 @@ public class Juego extends JPanel implements Runnable, Variables {
 	public void cicloMovimiento() {
 
 		if (muertes == NUM_DRAGONES_POR_MATAR) {
+			ArrayList<Dragon> dragones2 = new ArrayList();
 
-			jugando = false;
-			mensaje = "Usted ha ganado!";
-			GameOfSorts.areaDeTexto.setText("Usted ha ganado");
+			// mensaje = "Usted ha ganado!";
+			GameOfSorts.areaDeTexto.setText("Prepárese para la Oleada 2");
+			int i = 0;
+			while (i < 120) {
+				for (int j = 0; j < 15; j++) {
+					for (int k = 0; k < 8; k++) {
+						Dragon dragon = new Dragon(250 + 15 * j, 0 + 18 * k, i);
+						dragones2.add(dragon);
+						i++;
+					}
+
+				}
+			}
+			dragones = dragones2;
 		}
 
 		// MOVIMIENTO DEL JUGADOR
@@ -210,6 +225,12 @@ public class Juego extends JPanel implements Runnable, Variables {
 						disparo.matar();
 						GameOfSorts.areaDeTexto.setText("Ha disparado a un dragon");
 						muertes++;
+						if (numAlineacion < 6) {
+							numAlineacion++;
+						} else {
+							numAlineacion = 1;
+						}
+						cambiarLayout(numAlineacion);
 
 					}
 				}
@@ -218,8 +239,12 @@ public class Juego extends JPanel implements Runnable, Variables {
 			int x = disparo.getX();
 			x += 4;
 
-			if (x > 535) {
+			if (x > 535 && oportunidades != 0) {
+				oportunidades--;
 				disparo.matar();
+			} else if ((x > 535 && oportunidades == 0)) {
+				jugando = false;
+				gameOver();
 			} else {
 				disparo.setX(x);
 			}
@@ -232,7 +257,7 @@ public class Juego extends JPanel implements Runnable, Variables {
 			if (dragon.isVisible()) {
 				int x = dragon.getX();
 
-				if (x <= 0 && direccion != -1) {
+				if (x <= 0 && direccion == -1) {
 					dragon.setY(dragon.getY());
 					jugando = false;
 					mensaje = "Los dragones han cruzado la línea!";
@@ -287,7 +312,7 @@ public class Juego extends JPanel implements Runnable, Variables {
 
 		for (Dragon dragon : dragones) {
 
-			int disparos = generadorNum.nextInt(500);
+			int disparos = generadorNum.nextInt(1000);
 			Dragon.Fuego fuego = dragon.getFuego();
 
 			if (disparos == OPORTUNIDAD && dragon.isVisible() && fuego.isDestruido()) {
@@ -322,6 +347,41 @@ public class Juego extends JPanel implements Runnable, Variables {
 				}
 			}
 		}
+	}
+
+	private void cambiarLayout(int numAlineacion) {
+		if (numAlineacion == 1) {
+			GameOfSorts.alin.setText("Desorden");
+			logger.info("Se ha cambiado el layout por: Desorden");
+		}
+		if (numAlineacion == 2) {
+			ArrayList<Dragon> listaNueva = new ArrayList();
+			int i=1;
+			for(Dragon dragon: dragones) {
+				Dragon drago2= new Dragon(dragon.getX()+3,dragon.getY()+5,i++);
+				listaNueva.add(drago2);
+			}
+			dragones=listaNueva;
+			GameOfSorts.alin.setText("Selection Sort por edad");
+			logger.info("Se ha cambiado el layout por: Selection Sort según edad");
+		}
+		if (numAlineacion == 3) {
+			GameOfSorts.alin.setText("Insertion Sort por velocidad");
+			logger.info("Se ha cambiado el layout por: Insertion Sort");
+		}
+		if (numAlineacion == 4) {
+			GameOfSorts.alin.setText("Quick Sort por edad");
+			logger.info("Se ha cambiado el layout por: Quick Sort por edad");
+		}
+		if (numAlineacion == 5) {
+			GameOfSorts.alin.setText("Árbol binario por familias");
+			logger.info("Se ha cambiado el layout por: Árbol binario por familias");
+		}
+		if (numAlineacion == 6) {
+			GameOfSorts.alin.setText("Árbol AVL por edades.");
+			logger.info("Se ha cambiado el layout por: Árbol AVL por edades.");
+		}
+
 	}
 
 	@Override
