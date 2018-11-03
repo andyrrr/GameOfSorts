@@ -1,3 +1,5 @@
+package formacion;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -196,7 +198,7 @@ public class BinarySearchTree <B extends Comparable<B>>{
     public static void main (String[] args) {
     	Logger logger = Logger.getLogger("Binary");
 		logger.log(Level.INFO, "Crea Árbol Binario");
-    	BinarySearchTree<Integer> a1 = new BinarySearchTree<Integer>();
+    	/**BinarySearchTree<Integer> a1 = new BinarySearchTree<Integer>();
     	Oleada o1 = new Oleada(5);
     	Lista<Integer> listaEdades = new Lista<Integer>();
 		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
@@ -207,9 +209,9 @@ public class BinarySearchTree <B extends Comparable<B>>{
     	}
     	a1.display();
     	
-    }
+    }**/
     
-
+    }
         
         
  

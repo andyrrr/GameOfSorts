@@ -1,3 +1,4 @@
+package formacion;
 public class NodoAVL<B extends Comparable<B>>{
 	private B data;
 	int Factbalance;

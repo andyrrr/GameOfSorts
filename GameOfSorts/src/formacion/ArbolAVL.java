@@ -1,3 +1,7 @@
+package formacion;
+
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -6,6 +10,9 @@ public class ArbolAVL <B extends Comparable<B>>{
 	String impresor="";
 	NodoAVL<B> A;
 	boolean Hh;
+	static Logger logger = Logger.getLogger("");
+	ConsoleHandler handler = new ConsoleHandler();
+	//FileHandler handlerFile = new FileHandler("C:\\Users\\Inspiron 3458\\Documents\\Tec\\Datos_1\\Log.txt",1, 0);
 	//Guarda las rotaciones en un archivo
 	
 	
@@ -233,6 +240,7 @@ public class ArbolAVL <B extends Comparable<B>>{
 		else{
 			InordenAVL ((NodoAVL<B>) Nodo.Izquierdo);			
 			System.out.print(Nodo.getData()+" ");
+		
 			InordenAVL ((NodoAVL<B>) Nodo.Derecho);
 			
 		}
@@ -259,9 +267,10 @@ public class ArbolAVL <B extends Comparable<B>>{
         
     public static void main(String[] args) {
     	
-    	Logger logger = Logger.getLogger("AVL");
+    	
 		logger.log(Level.INFO, "Crea Árbol AVL");
-    	ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
+		
+    	/***ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
     	Oleada o1 = new Oleada(5);
     	Lista<Integer> listaEdades = new Lista<Integer>();
 		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
@@ -270,7 +279,7 @@ public class ArbolAVL <B extends Comparable<B>>{
     	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
     		arbol.Insercion(listaEdades.retornar(i));
     	}
-    	arbol.InordenAVL();
+    	arbol.InordenAVL();**/
 
 
     }

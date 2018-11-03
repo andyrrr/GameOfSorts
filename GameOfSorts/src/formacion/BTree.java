@@ -1,4 +1,7 @@
+package formacion;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -519,7 +522,7 @@ public class BTree<T extends Comparable<T>> {
     }
     
     
-    public static void main (String[] args) {
+    public static void main (String[] args) throws FileNotFoundException, IOException {
     	Logger logger = Logger.getLogger("B");
 		logger.log(Level.INFO, "Crea Árbol B");
     	BTree <String> b1 = new BTree<String>();

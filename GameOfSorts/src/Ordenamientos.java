@@ -1,5 +1,7 @@
 import java.util.logging.*;
 
+import formacion.ArbolAVL;
+
 public class Ordenamientos {
 	int dragonesMatados = 0;
 	String lista;
@@ -175,7 +177,7 @@ public class Ordenamientos {
 		}
 		return listaFinal;
 	}
-	String arbolAVL() {
+	void arbolAVL() {
 		ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
     	Oleada o1 = new Oleada(5);
     	Lista<Integer> listaEdades = new Lista<Integer>();
@@ -186,7 +188,7 @@ public class Ordenamientos {
     		arbol.Insercion(listaEdades.retornar(i));
     	}
     	arbol.InordenAVL();
-		return null;
+		
 	}
 
 	/*public static void main(String args[]) {
