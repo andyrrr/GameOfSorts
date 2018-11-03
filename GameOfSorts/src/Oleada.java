@@ -34,11 +34,17 @@ public class Oleada {
 		for (int i = 1; i < max; i++) {
 			edades.insertarFinal(i);
 		}
-		Dragon[] dragon = new Dragon[cantidad];
+		int X= 0;
+		int Y= 0;
 		for (int i = 0; i < cantidad; i++) {
-			dragon[i] = new Dragon(nombres, nombres, edades);
-			dragon[i].verDragon();
-			listaDragones.insertarFinal(dragon[i]);
+			for (int j=0; j<i;j++) {
+			Dragon dragon = new Dragon(nombres, nombres, edades,X +10* i, Y+10*j);
+			listaDragones.insertarFinal(dragon);
+			}
+		}
+		for (int i =0; i<listaDragones.getTamaño(); i++) {
+			listaDragones.retornar(i).verDragon();
+			
 		}
 	}
 
@@ -77,7 +83,7 @@ public class Oleada {
 		 * Se envia la lista de dragones a acomodar, y los dragones que han matado luego
 		 * con un for se uestra en consola el nuevo orden de la lista
 		 */
-		ob.Ordenar(o1.listaDragones, 1);
+		/**ob.Ordenar(o1.listaDragones, 1);
 		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
 			o1.listaDragones.retornar(i).verDragon();
 		}
@@ -89,6 +95,7 @@ public class Oleada {
 		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
 			o1.listaDragones.retornar(i).verDragon();
 
-		}
+		}*/
+	
 	}
 }

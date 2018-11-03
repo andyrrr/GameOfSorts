@@ -4,7 +4,6 @@ public class NodoArbolBinario<T>
     public T data;
 	public NodoArbolBinario<T> next;
 	public NodoArbolBinario<T> previous;
-	//////////////////////////////////////////////////////
 	public NodoArbolBinario (T data)
 	{
 		this.data = data;

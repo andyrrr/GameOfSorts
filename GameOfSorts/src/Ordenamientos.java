@@ -20,8 +20,8 @@ public class Ordenamientos {
 			listaRecarga.insertarFinal(listaDragones.retornar(i).getRecarga());
 		}
 		
-		System.out.println("Lista Desordenada Edades: " + listaEdades.verLista());
-		System.out.println("Lista Desordenada Recarga: " + listaRecarga.verLista());
+		//System.out.println("Lista Desordenada Edades: " + listaEdades.verLista());
+		//System.out.println("Lista Desordenada Recarga: " + listaRecarga.verLista());
 		/**
 		 * Estos son los ciclos de ordenamiento, cuando el ciclo termine vuelvve al principio, se cambia el String
 		 * lista por la cuál fue utilizada para ordnar, se usarán 3 algoritmos de ordenamiento y dos álboles
@@ -39,9 +39,9 @@ public class Ordenamientos {
 			quickSort(listaDragones, listaEdades, 0, listaEdades.getTamaño() - 1);
 			lista = "Quick Sort";
 		}
-		System.out.println("(E)Lista Ordenada con " + lista + ": " + listaEdades.verLista());
-		System.out.println("(R)Lista Ordenada con " + lista + ": " + listaRecarga.verLista());
-		System.out.println("");
+		//System.out.println("(E)Lista Ordenada con " + lista + ": " + listaEdades.verLista());
+		//System.out.println("(R)Lista Ordenada con " + lista + ": " + listaRecarga.verLista());
+		//System.out.println("");
 	}
 	
 	/**

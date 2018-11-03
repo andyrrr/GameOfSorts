@@ -5,6 +5,9 @@ public class Dragon {
 	int recarga;
 	int edad;
 	int resistencia;
+	int X;
+	int Y;
+	
 	/**
 	 * Se crea un objeto dragón con sus distintos atributos, el constructor recibe las listas con 
 	 * los dato usados o a usar
@@ -12,12 +15,14 @@ public class Dragon {
 	 * @param apellidos Lista de apellidos del txt que se pueden usar 
 	 * @param edades Lista de edades que se pueden usar 
 	 */
-	public Dragon(Lista<String> nombres, Lista<String> apellidos, Lista<Integer> edades) {
+	public Dragon(Lista<String> nombres, Lista<String> apellidos, Lista<Integer> edades, int X, int Y) {
 		setNombre(nombres);
 		setApellido(apellidos);
 		setRecarga();
 		setEdad(edades);
 		setResistencia();
+		this.X= X;
+		this.Y=Y;
 
 	}
 
@@ -101,7 +106,10 @@ public class Dragon {
 		System.out.println("Edad: " + edad);
 		System.out.println("Velocidad de recarga: " + recarga);
 		System.out.println("Resistencia: " + resistencia);
+		System.out.println("X:" + X );
+		System.out.println("Y:" + Y );
 		System.out.println("");
+		
 	}
 
 }

@@ -2,8 +2,8 @@
 import java.util.NoSuchElementException;
 
 
-
 public class BTree<T extends Comparable<T>> {
+	public String res;
 
     private Node<T> root;
 
@@ -55,7 +55,7 @@ public class BTree<T extends Comparable<T>> {
      * Returns all elements of the tree in in-order traversing.
      */
     public String inOrder() {
-        return inOrder(root);
+        return inOrder(root);        
     }
 
     /**
@@ -77,6 +77,7 @@ public class BTree<T extends Comparable<T>> {
      */
     public int getHeight() {
         return getHeight(root);
+        
     }
 
     private void insert(T info, Node<T> node, Node<T> parent, boolean right) {
@@ -216,8 +217,13 @@ public class BTree<T extends Comparable<T>> {
             result = result + node.information.toString();
             result = result + inOrder(node.right);
         }
-        return result;
+        
+        System.out.println(result);
+		return result;
+		
     }
+    
+   
 
     private String preOrder(Node<T> node) {
 
@@ -509,15 +515,18 @@ public class BTree<T extends Comparable<T>> {
     }
     
     
-    private String savePre(Node<T> node) {
-
-        String result = "";
-        if (node != null) {
-            result = result + node.getAll() + ",";
-            result = result + savePre(node.left);
-            result = result + savePre(node.right);
-        }
-        return result;
+    public static void main (String[] args) {
+    	
+    	BTree <String> b1 = new BTree<String>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<String> nombres = new Lista<String>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			nombres.insertarFinal(o1.listaDragones.retornar(i).getNombre());
+		}
+    	for (int i = 0; i < nombres.getTamaño(); i++) { 
+    		b1.insert(nombres.retornar(i));
+    	}
+    	b1.inOrder();
     }
 }
     

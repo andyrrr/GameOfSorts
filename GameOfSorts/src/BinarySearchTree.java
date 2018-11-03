@@ -156,12 +156,13 @@ public class BinarySearchTree <B extends Comparable<B>>{
         if(root!=null){
             displayIn(root.previous);
             lookstack += root.getData();
-            //System.out.print(" " + root.getData().getName());
+            System.out.print(" " + root.getData());
             displayIn(root.next);
         }
     }
     
     public void displayPre(){
+    	
         displayPre(root);      
     }
     
@@ -188,9 +189,18 @@ public class BinarySearchTree <B extends Comparable<B>>{
         return righth + 1;
     }
     }
-
-    
+ 
     public static void main (String[] args) {
+    	BinarySearchTree<Integer> a1 = new BinarySearchTree<Integer>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<Integer> listaEdades = new Lista<Integer>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			listaEdades.insertarFinal(o1.listaDragones.retornar(i).getEdad());
+		}
+    	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
+    		a1.insert(listaEdades.retornar(i));
+    	}
+    	a1.display();
     	
     }
     

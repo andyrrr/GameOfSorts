@@ -4,11 +4,7 @@
         
         public boolean Active;
         
-        public String email;
-        
         public String nombre;
-        
-        public float money;
 
         public Node<T> parent;
 
@@ -27,31 +23,30 @@
                     {
                         this.information = (T) parts[0];
                         this.nombre = parts[0];     
-                        this.email= " ";
+                        
                         this.Active = false;
-                        this.money = 0;
+                        
                     }
                     if (parts.length>=2)
                     {
-                        this.email = parts[1];
+                        
                         this.Active = false;
                     }
                     if (parts.length>=3)
                     {
                         this.Active= Boolean.valueOf(parts[2]);
-                        this.money = 0;
+                        
                     }
                     if (parts.length>=4)
                     {
-                        this.money = Float.valueOf(parts[3]);
+                        
                     }
                 }
                 else
                 {
                     this.information = information;
                     this.nombre = (String) information;
-                    this.email= " ";
-                    this.money = 0;
+                    
                 }
             
 
@@ -90,10 +85,7 @@
         {
             return this.information;
         }
-        public String getEmail()
-        {
-            return email;
-        }
+        
         public Boolean isActive()
         {
             return Active;
@@ -102,18 +94,11 @@
         {
             Active = newActive;
         }
-        public void changeEmail(String newEmail)
-        {
-            email = newEmail;
-        }
+        
         public String getAll()
         {
             System.out.println(nombre);
-            return nombre + ">" + email + ">" + Active+ ">" + Float.toString(money);
-        }
-        public void addMoney(float monto)
-        {
-            this.money += monto;
-        }
-        
+			return nombre;
+            
+        }       
     }

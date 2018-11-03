@@ -225,9 +225,10 @@ public class ArbolAVL <B extends Comparable<B>>{
 		if (Nodo == null)
 			return;
 		else{
-			InordenAVL ((NodoAVL<B>) Nodo.Izquierdo);
-			System.out.print(Nodo.getData()+"  ");
+			InordenAVL ((NodoAVL<B>) Nodo.Izquierdo);			
+			System.out.print(Nodo.getData()+" ");
 			InordenAVL ((NodoAVL<B>) Nodo.Derecho);
+			
 		}
 	}
 	
