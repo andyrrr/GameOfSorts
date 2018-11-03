@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
@@ -187,6 +189,8 @@ public class GameOfSorts extends Canvas implements Runnable {
 
 		/** ACÁ SE INICIA EL JUEGO */
 		juego.iniciar();
+		Logger logger = Logger.getLogger("Juego");
+		logger.log(Level.INFO, "Inicia el juego");
 
 	}
 

@@ -1,3 +1,4 @@
+import java.util.logging.*;
 
 public class Ordenamientos {
 	int dragonesMatados = 0;
@@ -11,6 +12,9 @@ public class Ordenamientos {
  * @param dragonesMatados Cambtidad de dragones que han muerto
  */
 	public void Ordenar(Lista<Dragon> listaDragones, int dragonesMatados) {
+		Logger logger = Logger.getLogger("Prueba");
+		logger.log(Level.INFO, "Ordenando");
+	
 		Lista<Integer> listaEdades = new Lista<Integer>();
 		for (int i=0;i<listaDragones.getTamaño();i++) {
 			listaEdades.insertarFinal(listaDragones.retornar(i).getEdad());
@@ -75,6 +79,7 @@ public class Ordenamientos {
 			Dragon temp2 = listaDragones.retornar(min_idx);
 			listaDragones.modificar(min_idx, listaDragones.retornar(i));
 			listaDragones.modificar(i, temp2);
+			
 		}
 	}
 
@@ -169,6 +174,19 @@ public class Ordenamientos {
 			listaFinal.insertarFinal(Integer.valueOf(li[i]));
 		}
 		return listaFinal;
+	}
+	String arbolAVL() {
+		ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
+    	Oleada o1 = new Oleada(5);
+    	Lista<Integer> listaEdades = new Lista<Integer>();
+		for (int i=0;i<o1.listaDragones.getTamaño();i++) {
+			listaEdades.insertarFinal(o1.listaDragones.retornar(i).getEdad());
+		}
+    	for (int i = 0; i < listaEdades.getTamaño(); i++) { 
+    		arbol.Insercion(listaEdades.retornar(i));
+    	}
+    	arbol.InordenAVL();
+		return null;
 	}
 
 	/*public static void main(String args[]) {

@@ -1,3 +1,5 @@
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Dragon {
 	String nombre;
@@ -36,6 +38,8 @@ public class Dragon {
 	 * @param nombres Listas de nombres a usar
 	 */
 	public void setNombre(Lista<String> nombres) {
+		Logger logger = Logger.getLogger("Nombre");
+		logger.log(Level.INFO, "Se generó el nombre del dragón");
 		int numero = nombres.getTamaño();
 		int aleatorio = (int) Math.floor(Math.random() * (numero));
 		String seleccion = (String) nombres.retornar(aleatorio);
@@ -53,6 +57,8 @@ public class Dragon {
 	 * @param apellidos
 	 */
 	public void setApellido(Lista<String> apellidos) {
+		Logger logger = Logger.getLogger("Apellido");
+		logger.log(Level.INFO, "Se generó el apellido del dragón");
 		int aleatorio = (int) Math.floor(Math.random() * (apellidos.getTamaño()));
 		String seleccion = (String) apellidos.retornar(aleatorio);
 		apellidos.removerPorPosicion(aleatorio);
@@ -67,6 +73,8 @@ public class Dragon {
 	 * velocidade de recarga
 	 */
 	public void setRecarga() {
+		Logger logger = Logger.getLogger("Recarga");
+		logger.log(Level.INFO, "Se generó la recarga del dragón");
 		int fuego = (int) Math.floor(Math.random() * (100) + 1);
 		this.recarga = fuego;
 	}
@@ -80,6 +88,8 @@ public class Dragon {
 	 * @param edades lista de edades a usar
 	 */
 	public void setEdad(Lista<Integer> edades) {
+		Logger logger = Logger.getLogger("Edad");
+		logger.log(Level.INFO, "Se generó la edad del dragón");
 		int aleatorio = (int) Math.floor(Math.random() * (edades.getTamaño()));
 		int seleccion = edades.retornar(aleatorio);
 		edades.removerPorPosicion(aleatorio);
@@ -95,6 +105,8 @@ public class Dragon {
 	 */
 
 	public void setResistencia() {
+		Logger logger = Logger.getLogger("Resistencia");
+		logger.log(Level.INFO, "Se generó la resistencia del dragón");
 		int resistencia = (int) Math.floor(Math.random() * (3) + 1);
 		this.resistencia = resistencia;
 	}

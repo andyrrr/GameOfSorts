@@ -1,8 +1,13 @@
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ArbolAVL <B extends Comparable<B>>{
+	
 	String impresor="";
 	NodoAVL<B> A;
 	boolean Hh;
 	//Guarda las rotaciones en un archivo
+	
 	
 	//Inserta un elemento en el arbol
 	public void Insercion (B data){
@@ -78,7 +83,8 @@ public class ArbolAVL <B extends Comparable<B>>{
 				
 			}
 			else{
-				System.out.println("Error: No se pueden numeros iguales");
+				Logger logger = Logger.getLogger("AVL");
+				logger.log(Level.WARNING, "Error: No se pueden numeros iguales");
 				Hh = false;
 			}
 		}
@@ -230,6 +236,7 @@ public class ArbolAVL <B extends Comparable<B>>{
 			InordenAVL ((NodoAVL<B>) Nodo.Derecho);
 			
 		}
+		
 	}
 	
 
@@ -251,7 +258,9 @@ public class ArbolAVL <B extends Comparable<B>>{
     }    
         
     public static void main(String[] args) {
-    
+    	
+    	Logger logger = Logger.getLogger("AVL");
+		logger.log(Level.INFO, "Crea Árbol AVL");
     	ArbolAVL<Integer> arbol = new ArbolAVL<Integer>();
     	Oleada o1 = new Oleada(5);
     	Lista<Integer> listaEdades = new Lista<Integer>();
@@ -262,6 +271,8 @@ public class ArbolAVL <B extends Comparable<B>>{
     		arbol.Insercion(listaEdades.retornar(i));
     	}
     	arbol.InordenAVL();
+
+
     }
 	
 }

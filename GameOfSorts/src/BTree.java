@@ -1,10 +1,12 @@
 
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class BTree<T extends Comparable<T>> {
 	public String res;
-
+	Lista<Integer> Edades3 = new Lista<Integer>();
     private Node<T> root;
 
     /**
@@ -214,6 +216,7 @@ public class BTree<T extends Comparable<T>> {
         String result = "";
         if (node != null) {
             result = result + inOrder(node.left) + " ";
+            Edades3.insertarFinal((Integer)node.information);
             result = result + node.information.toString();
             result = result + inOrder(node.right);
         }
@@ -511,12 +514,14 @@ public class BTree<T extends Comparable<T>> {
             result = result + trasOrder(node.left);
             
         }
+        Edades3.verLista();
         return result;
     }
     
     
     public static void main (String[] args) {
-    	
+    	Logger logger = Logger.getLogger("B");
+		logger.log(Level.INFO, "Crea Árbol B");
     	BTree <String> b1 = new BTree<String>();
     	Oleada o1 = new Oleada(5);
     	Lista<String> nombres = new Lista<String>();
@@ -527,6 +532,7 @@ public class BTree<T extends Comparable<T>> {
     		b1.insert(nombres.retornar(i));
     	}
     	b1.inOrder();
+    	
     }
 }
     

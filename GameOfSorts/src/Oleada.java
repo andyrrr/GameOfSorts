@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Oleada {
 	/**
@@ -79,23 +81,25 @@ public class Oleada {
 	public static void main(String[] args) {
 
 		Oleada o1 = new Oleada(5);
+		Logger logger = Logger.getLogger("Oleada");
+		logger.log(Level.INFO, "Crea una oleada");
 		/**
 		 * Se envia la lista de dragones a acomodar, y los dragones que han matado luego
 		 * con un for se uestra en consola el nuevo orden de la lista
 		 */
-		/**ob.Ordenar(o1.listaDragones, 1);
+		ob.Ordenar(o1.listaDragones, 1);
 		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
-			o1.listaDragones.retornar(i).verDragon();
+			//o1.listaDragones.retornar(i).verDragon();
 		}
 		ob.Ordenar(o1.listaDragones, 2);
 		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
-			o1.listaDragones.retornar(i).verDragon();
+			//o1.listaDragones.retornar(i).verDragon();
 		}
 		ob.Ordenar(o1.listaDragones, 3);
 		for (int i = 0; i < o1.listaDragones.getTamaño(); i++) {
 			o1.listaDragones.retornar(i).verDragon();
 
-		}*/
+		}
 	
 	}
 }
