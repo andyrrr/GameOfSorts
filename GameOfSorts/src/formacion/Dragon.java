@@ -1,4 +1,6 @@
 package formacion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Dragon {
 	String nombre;
@@ -6,11 +8,25 @@ public class Dragon {
 	int recarga;
 	int edad;
 	int resistencia;
-	Dragon hijo1, hijo2;
-	int hi=0;
-	int cox=0;
-	int coy=0;
+	int X;
+	int Y;
 	
+	public int getX() {
+		return X;
+	}
+
+	public void setX(int x) {
+		X = x;
+	}
+
+	public int getY() {
+		return Y;
+	}
+
+	public void setY(int y) {
+		Y = y;
+	}
+
 	/**
 	 * Se crea un objeto dragón con sus distintos atributos, el constructor recibe las listas con 
 	 * los dato usados o a usar
@@ -24,44 +40,14 @@ public class Dragon {
 		setRecarga();
 		setEdad(edades);
 		setResistencia();
+		this.X= X;
+		this.Y=Y;
+
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
-	
-	/*public void setHijos(Dragon hijo1, Dragon hijo2) {
-		setHijo1(hijo1);
-		setHijo1(hijo2);
-		setHi(2);
-		this.hijo1=hijo1;
-		this.hijo2=hijo2;
-		this.hi=2;
-	}*/
-	public int getHi() {
-		return hi;
-	}
-
-	public void setHi(int hi) {
-		this.hi = hi;
-	}
-
-	public Dragon getHijo1() {
-		return hijo1;
-	}
-
-	public void setHijo1(Dragon hijo1) {
-		this.hijo1 = hijo1;
-	}
-
-	public Dragon getHijo2() {
-		return hijo2;
-	}
-
-	public void setHijo2(Dragon hijo2) {
-		this.hijo2 = hijo2;
-	}
-
 	/**
 	 * Toma el tamaño de la lisa, toma una posición aleatoria, 
 	 * toma el valor de la posición se la asigna al nombre y elimina ese 
@@ -69,10 +55,12 @@ public class Dragon {
 	 * @param nombres Listas de nombres a usar
 	 */
 	public void setNombre(Lista<String> nombres) {
+		Logger logger = Logger.getLogger("Nombre");
+		logger.log(Level.INFO, "Se generó el nombre del dragón");
 		int numero = nombres.getTamaño();
 		int aleatorio = (int) Math.floor(Math.random() * (numero));
 		String seleccion = (String) nombres.retornar(aleatorio);
-		//nombres.removerPorPosicion(aleatorio);
+		nombres.removerPorPosicion(aleatorio);
 		this.nombre = seleccion;
 	}
 
@@ -86,9 +74,11 @@ public class Dragon {
 	 * @param apellidos
 	 */
 	public void setApellido(Lista<String> apellidos) {
+		Logger logger = Logger.getLogger("Apellido");
+		logger.log(Level.INFO, "Se generó el apellido del dragón");
 		int aleatorio = (int) Math.floor(Math.random() * (apellidos.getTamaño()));
 		String seleccion = (String) apellidos.retornar(aleatorio);
-		//apellidos.removerPorPosicion(aleatorio);
+		apellidos.removerPorPosicion(aleatorio);
 		this.apellido = seleccion;
 	}
 
@@ -100,6 +90,8 @@ public class Dragon {
 	 * velocidade de recarga
 	 */
 	public void setRecarga() {
+		Logger logger = Logger.getLogger("Recarga");
+		logger.log(Level.INFO, "Se generó la recarga del dragón");
 		int fuego = (int) Math.floor(Math.random() * (100) + 1);
 		this.recarga = fuego;
 	}
@@ -113,6 +105,8 @@ public class Dragon {
 	 * @param edades lista de edades a usar
 	 */
 	public void setEdad(Lista<Integer> edades) {
+		Logger logger = Logger.getLogger("Edad");
+		logger.log(Level.INFO, "Se generó la edad del dragón");
 		int aleatorio = (int) Math.floor(Math.random() * (edades.getTamaño()));
 		int seleccion = edades.retornar(aleatorio);
 		edades.removerPorPosicion(aleatorio);
@@ -128,6 +122,8 @@ public class Dragon {
 	 */
 
 	public void setResistencia() {
+		Logger logger = Logger.getLogger("Resistencia");
+		logger.log(Level.INFO, "Se generó la resistencia del dragón");
 		int resistencia = (int) Math.floor(Math.random() * (3) + 1);
 		this.resistencia = resistencia;
 	}
@@ -139,8 +135,10 @@ public class Dragon {
 		System.out.println("Edad: " + edad);
 		System.out.println("Velocidad de recarga: " + recarga);
 		System.out.println("Resistencia: " + resistencia);
-		System.out.println("Padre de: " + this.hi);
+		System.out.println("X:" + X );
+		System.out.println("Y:" + Y );
 		System.out.println("");
+		
 	}
 
 }

@@ -10,7 +10,7 @@ public class Oleada {
 	/**
 	 * Se declaran las variables a usar dentro del programa
 	 */
-	private static final String ARCHIVO = "C:\\Users\\maxta\\Desktop\\nombres.txt";
+	private static final String ARCHIVO = "C:\\Users\\Valeria\\Documents\\Segundo Semestre\\Algoritmos y Estructuras de Datos I\\Game of Sorts\\nombresDragones.txt";
 	static Lista<String> nombres = new Lista<String>();
 	Lista<Integer> edades = new Lista<Integer>();
 	public Lista<Dragon> listaDragones = new Lista<Dragon>();
@@ -88,6 +88,7 @@ public class Oleada {
 	 */
 	public static void main(String[] args) {
 		try {
+			Oleada o1 = new Oleada(10);
 			muestraContenido(ARCHIVO);
 		
 			
